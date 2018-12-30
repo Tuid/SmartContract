@@ -1,0 +1,138 @@
+body {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+  color: blue;
+  font-family: "Open Sans", sans-serif;
+}
+
+label {
+  padding: 5px;
+  width: 100px;
+}
+
+input {
+  display: block;
+  border: 5px;
+  margin: 5px;
+  box-shadow: 0px 2px 6px gray;
+  border-color: #ffee93;
+  width: 300px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+button {
+  font-size: 16px;
+  padding: 5px;
+}
+
+h1 {
+  text-align: center;
+
+}
+
+h2 {
+  color: #AAA;
+  font-size: 32px;
+}
+
+h3 {
+  font-weight: normal;
+  color: #AAA;
+  font-size: 24px;
+}
+
+div#divOther {
+  float: left;
+  width: 48%;
+}
+
+div#divjoiner {
+  padding: 10px 5px 5px 5px;
+  border: 5px;
+  margin-bottom: 5px;
+  box-shadow: 0px 0px 6px gray;
+  background-color: aqua;
+}
+
+div#divjoinerdetail {
+  margin-top: 60px;
+  margin-left: 330px;
+  margin-bottom: 60px;
+}
+
+div#divjoineredit {
+  float: left;
+}
+
+div#divpublisher {
+  padding: 10px;
+  border: 5px;
+  box-shadow: 0px 0px 6px gray;
+  background-color: aqua;
+}
+
+div#divpublisheredit {
+  float: left;
+}
+
+div#divpublisherdetail {
+  margin-top: 100px;
+  margin-left: 330px;
+  margin-bottom: 100px;
+}
+
+div#divproject {
+  padding: 10px 5px 10px 5px;
+  margin-bottom: 5px;
+  border: 5px;
+  height: 280px;
+  box-shadow: 0px 0px 6px gray;
+  background-color: aqua;
+}
+
+div#divprojectedit {
+  float: left;
+}
+
+div#divprojectshow {
+  margin-top: 60px;
+  margin-left: 350px;
+  margin-bottom: 60px;
+}
+
+div#div_projects {
+  float: left;
+
+  height: 100%;
+  width: 52%;
+}
+
+div.projectitem {
+  float: left;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  width: 30%;
+  padding: 5px;
+  box-shadow: 0px 0px 4px gray;
+}
+
+button {
+  margin-left: 5px;
+  padding: 5px;
+  color: white;
+  box-shadow: 0px 2px 6px #4cb4e7;
+  border: 0px;
+  background-color: #4cb4e7;
+}
+
+button:hover {
+  padding: 5px;
+  border: 0px;
+  background-color: #1f6fb5
+}
+
+.hint {
+  color: #666;
+}

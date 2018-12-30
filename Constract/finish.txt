@@ -1,0 +1,196 @@
+pragma solidity ^0.4.0; 
+
+contract Plant{
+    
+    struct Joiner{
+        address  _joinerAddress;
+        string  _joinerName;
+        uint8 _allTime;
+        address[] _projects;
+    }
+    
+    struct Publisher{
+        address  _publisherAddress;
+        string _publisherName;
+        uint8  _allTime;
+        address[] _projects;
+    }
+    
+    struct Project{
+        address _projectAddress;
+        string _projectName;
+    //项目时间
+        uint8  _projectTime;
+    //项目所需人数
+        uint8  _maxCount;
+    //项目公益时
+        uint8  _maxJobTime;
+    //项目结束标志
+        bool  _isEnd;
+      
+       address  _publisher;
+       address []  _joiners;
+    }
+    
+    Publisher [] private _publishersArray;
+    Joiner [] private _joinersArray;
+    Project [] private _projectsArray;
+    mapping (address=>Publisher) private  _publishers;
+    mapping (address=>Joiner)  private _joiners;
+    mapping (address=>Project) private _projects;
+    
+    Publisher _publisher;
+    Joiner _joiner;
+    Project _project;
+    
+    function addNewJoiner(string name) public {
+          address [] storage projecets;
+        Joiner memory joiner = Joiner(msg.sender,name,0,projecets );
+        
+        _joinersArray.push(joiner);
+         _joiner =  joiner;
+        _joiners[_joiner._joinerAddress] = joiner;
+      
+    }
+    
+    function addNewPublisher(string name,uint8 times) public{
+        
+         address [] storage projecets ;
+        Publisher memory publisher =  Publisher(msg.sender,name,times,projecets);
+        _publisher = publisher;
+        _publishersArray.push(_publisher);
+       _publishers[publisher._publisherAddress] = publisher;
+       
+    }
+    
+    function addNewProject(string name,uint8 projectTime,uint8 count,uint8 jobTime,address publisher)public{
+        
+        address [] storage joiners ;
+    
+        Project memory project =  Project(msg.sender,name,projectTime,count,jobTime,false, publisher, joiners);
+        _project = project;
+        
+         Publisher storage p = _publishers[publisher];
+         p._projects.push(msg.sender);
+        
+        
+        _projectsArray.push(project);
+        _projects[_project._projectAddress] = project;
+        
+    }
+
+    
+   
+    function showAProject(address add)public view returns (address a,string name,address publisher,address[] joiner,bool isEnd){
+       
+        Project storage proJect = _projects[add];
+        a =  proJect._projectAddress;
+        name =  proJect._projectName;
+        
+        publisher =  proJect._publisher;
+        joiner =  proJect._joiners;
+        isEnd = proJect._isEnd;
+        return(a,name,publisher,joiner,isEnd);
+    }
+    
+      function showProject()public view returns (address a,string name,address publisher,address[] joiner,bool isEnd){
+       
+        Project storage proJect = _projects[_project._projectAddress];
+        a =  proJect._projectAddress;
+        name =  proJect._projectName;
+        
+        publisher =  proJect._publisher;
+        joiner =  proJect._joiners;
+        isEnd  = proJect._isEnd;
+        return(a,name,publisher,joiner,isEnd);
+    }
+     
+    
+    function AddInProject(address joiner,address project) public returns(bool isJoined){
+       
+        isJoined =false;
+        
+        Joiner storage j = _joiners[joiner];
+        j._projects.push(project);
+        Project storage proJect = _projects[project];
+        proJect._joiners.push(joiner);
+        isJoined = true;
+        return isJoined;
+        
+    }
+    
+    function finishProject(address project) public payable returns(bool isSend){
+        
+        Project storage proJect = _projects[project];
+        
+        address publisher = proJect._publisher;
+        address[] storage joiners  = proJect._joiners;
+        uint8 jobtime = proJect._maxJobTime;
+        for(uint i =0;i<joiners.length;i++){
+            isSend =  send(publisher,joiners[i],jobtime);
+            if(isSend == false){
+                proJect._isEnd=true;
+                return isSend;
+            }
+        }
+        proJect._isEnd=true;
+        return isSend;
+    }
+    
+     
+    function showJoiner() public view returns(address a,string name, uint8 times,address [] projects){
+        a = _joiner._joinerAddress;
+        name  =_joiner._joinerName;
+        times = _joiner._allTime;
+        projects = _joiner._projects;
+        return(a,name,times,projects);
+    }
+    
+    
+     function showAJoiner(address add) public view returns(address a,string name, uint8 times,address [] projects){
+       Joiner storage j = _joiners[add];
+       a = j._joinerAddress;
+       name=j._joinerName;
+       times = j._allTime;
+       projects = j._projects;
+        return(a,name,times,projects);
+    }
+    
+    function showAPublisher(address add)public view returns(address a,string name,uint8 times,address [] projects){
+       Publisher storage p = _publishers[add];
+       
+        a = p._publisherAddress;
+        name = p._publisherName;
+        times =p._allTime;
+         projects = p._projects;
+        return(a,name,times,projects);
+    }
+    
+    function showPublisher()public view returns(address a,string name,uint8 times,address [] projects){
+        a = _publisher._publisherAddress;
+        name = _publisher._publisherName;
+        times = _publisher._allTime;
+         projects = _publisher._projects;
+        return(a,name,times,projects);
+    }
+    
+    
+   function send(address fromP,address toJ,uint8 times) public payable returns(bool isSend){
+       
+       Publisher storage publisher = _publishers[fromP];
+       Joiner storage joiner = _joiners[toJ];
+       if(publisher._allTime > times){
+           publisher._allTime= publisher._allTime - times;
+           joiner._allTime= joiner._allTime+times;
+           _publisher = publisher;
+           _joiner = joiner;
+           isSend = true;
+       }else{
+           isSend = false;
+       }
+       return isSend; 
+       
+   }
+    
+    
+}

@@ -1,0 +1,14 @@
+
+配置环境：
+nodejs,npm
+
+npm  install -g ganache-cli
+
+npm install -g truffle
+
+
+truffle compile //编译
+truffle migrate--network ganache//在ganache 启动后
+npm run dev
+
+ganache - cli

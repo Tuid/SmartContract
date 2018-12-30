@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>公益平台</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="./app.js"></script>
+
+</head>
+
+<body>
+
+  <h1> 公益平台</h1>
+  <div>
+    <label id="status"> status </label>
+  </div>
+
+
+  <div id="div_projects">
+    <div id="project_1" class="projectitem">
+      <ul>
+        <li id="project_address">项目地址 </li>
+        <li id="project_name"> 项目名:test </li>
+        <li id="project_nowcount">项目人数:0</li>
+        <li id="project_maxcount">项目最多人数:0</li>
+        <li id="project_jobtime">项目公益时:0</li>
+        <li id="project_isOpen">项目状态:false</li>
+      </ul>
+      <button id="addInProject" onclick="App.addInProject(this)" disabled="true">加入项目</button>
+    </div>
+  </div>
+
+  <div id="divOther">
+    <div id="divproject">
+      <div id="divprojectedit">
+        <label>项目名</label> <input type="text" name="projectName" id="projectName" />
+        <label>项目开始时间</label> <input type="text" name="projectTime" id="projectTime" />
+        <label>项目人数</label><input type="text" name="projectMaxJoiner" id="projectMaxJoiner" />
+        <label>项目公益时</label> <input type="text" name="projectMaxTime" id="projectMaxTime" />
+
+        <button id="addNewProject" onclick="App.addNewProject()">添加项目</button>
+
+      </div>
+      <div id="divprojectshow">
+        <div>
+          <button id="showProject" onclick="App.showProject()">showProject</button>
+          <input type="text" name="projectName" id="projectNameA" />
+          <button id="showAProject" onclick="App.showAProject()">showAProject</button>
+        </div>
+
+        <div>
+          <label>finish</label> <input type="text" name="" id="finishProjectName" />
+          <button id="finishProject" onclick="App.finishProject()">finishProject</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="divjoiner">
+      <div id="divjoineredit">
+        <div>
+          <label>Joiner名</label>
+          <input type="text" id="joinerName" />
+          <button id="addNewJoiner" onclick="App.addNewJoiner()">添加新Joiner</button>
+        </div>
+
+        <br>
+
+        <div>
+          <button id="showJoiner" onclick="App.showJoiner()">showJoiner</button>
+          <input type="text" name="joinerName" id="joinerNameA" />
+          <button id="showAJoiner" onclick="App.showAJoiner()">showAJoiner</button>
+        </div>
+      </div>
+      <div id="divjoinerdetail">
+        <ul>
+          <li>joiner地址: </li>
+          <li>joiner名字:</li>
+          <li>joiner公益时:0</li>
+          <li>joiner加入的项目</li>
+        </ul>
+      </div>
+
+      <div>
+        <button id="showAllJoiners" onclick="App.showAllJoiner()">showAllJoiner</button>
+      </div>
+
+    </div>
+
+    <div id="divpublisher">
+      <div id="divpublisheredit">
+        <div>
+          <label>Publisher名</label> <input type="text" id="publisherName" />
+          <label>Publisher初始公益时</label> <input type="text" id="publisherTimeCount" />
+          <button id="addNewPublisher" onclick="App.addNewPublisher()">添加新Publisher</button>
+        </div>
+
+        <br>
+
+        <div>
+          <button id="showPublisher" onclick="App.showPublisher()">showPublisher</button>
+          <input type="text" name="publisherNameA" id="publisherNameA" />
+          <button id="showAPublisher" onclick="App.showAPublisher()">showAPublisher</button>
+        </div>
+      </div>
+
+      <div id="divpublisherdetail">
+        <ul>
+          <li>publisher地址: </li>
+          <li>publisher名字:</li>
+          <li>publisher公益时:</li>
+          <li>publisher发布的项目</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <br>
+  </div>
+</body>
+
+</html>
